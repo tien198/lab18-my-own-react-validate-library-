@@ -23,9 +23,11 @@ export function isNotNull(inputTitle, inputVal) {
 }
 
 export function ErrorMsg({ msg }) {
-    return <div style={{ color: 'red', height: '30px' }}>
-        <b style={{ display: 'block', marginTop: '.75rem' }}>{msg}</b>
-    </div>
+    return (
+        <div style={{ color: 'red', height: '30px' }}>
+            <b style={{ display: 'block', marginTop: '.75rem' }}>{msg}</b>
+        </div>
+    )
 }
 
 export function useValidate(inputTitle, inputVal, funcArr) {
@@ -35,3 +37,4 @@ export function useValidate(inputTitle, inputVal, funcArr) {
 
     return invalidAuthorMsg
 }
+

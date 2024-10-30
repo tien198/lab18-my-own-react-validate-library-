@@ -6,11 +6,14 @@ import QuotesList from '../components/quotes/QuotesList';
 function Quotes(props) {
     const quotesObj = useLoaderData()
 
-    const quotesArr = Object.values(quotesObj)
+    // const quotesEntries = Object.entries(quotesObj)
+    const quotes = Object.keys(quotesObj).map(key =>
+        ({ id: key, ...quotesObj[key] })
+    )
 
     return (
         <>
-            <QuotesList quotes={quotesArr} />
+            <QuotesList quotes={quotes} />
         </>
     );
 }
