@@ -1,9 +1,9 @@
 import { Fragment } from 'react';
 
 import QuoteItem from './QuoteItem';
-import classes from './QuoteList.module.css';
+import classes from './QuotesList.module.css';
 
-const QuoteList = ({ quotes }) => {
+const QuotesList = ({ quotes }) => {
   return (
     <Fragment>
       <ul className={classes.list}>
@@ -20,4 +20,4 @@ const QuoteList = ({ quotes }) => {
   );
 };
 
-export default QuoteList;
+export default QuotesList;

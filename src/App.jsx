@@ -1,6 +1,6 @@
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Root from "./pages/Root";
-import Quotes from "./pages/Quotes";
+import Quotes, { loader as quotesLoader } from "./pages/Quotes";
 import QuoteDetail from "./pages/QuoteDetail";
 import NewQuote from "./pages/NewQuote";
 import Notfound from "./pages/Notfound";
@@ -14,7 +14,8 @@ const router = createBrowserRouter([
     children: [
       {
         path: 'quotes',
-        element: <Quotes />
+        element: <Quotes />,
+        loader: quotesLoader
       },
       {
         path: ':quoteId',

@@ -3,6 +3,8 @@ import { useMemo, useRef, useState } from 'react';
 import Card from '../UI/Card';
 import LoadingSpinner from '../UI/LoadingSpinner';
 import classes from './QuoteForm.module.css';
+import { isNotNull, useValidate, ErrorMsg } from '../../ulties/validate';
+import { BASE_URL } from '../../ulties/http';
 
 const QuoteForm = (props) => {
   const [isSubmitted, setIsSubmitted] = useState(false)
@@ -51,39 +53,9 @@ const QuoteForm = (props) => {
 
 export default QuoteForm;
 
+async function action() {
+  const response = await fetch(BASE_URL, {
 
-function hasInvalidMsg(inputTitle, input, funcArr) {
-  let msg = ''
-  for (const func of funcArr) {
-    const result = func(inputTitle, input)
-    if (!result[0]) {
-      msg = result[1]
-      break
-    }
-  }
-  return msg
-}
+  })
 
-function isNotNull(inputTitle, inputVal) {
-  if (inputVal !== '')
-    return [true]
-  else
-    return [
-      false,
-      `${inputTitle} can't be null!`
-    ]
-}
-
-function ErrorMsg({ msg }) {
-  return <div style={{ color: 'red', height: '30px' }}>
-    <b style={{ display: 'block', marginTop: '.75rem' }}>{msg}</b>
-  </div>
-}
-
-function useValidate(inputTitle, inputVal, funcArr) {
-  const invalidAuthorMsg = useMemo(
-    () => hasInvalidMsg(inputTitle, inputVal, funcArr),
-    [inputVal])
-
-  return invalidAuthorMsg
 }
