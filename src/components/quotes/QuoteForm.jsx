@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react';
+import { useState } from 'react';
 
 import Card from '../UI/Card';
 import LoadingSpinner from '../UI/LoadingSpinner';

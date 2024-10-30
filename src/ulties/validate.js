@@ -1,3 +1,4 @@
+import { useMemo } from "react"
 
 export function hasInvalidMsg(inputTitle, input, funcArr) {
     let msg = ''
