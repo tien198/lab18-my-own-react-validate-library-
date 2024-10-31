@@ -5,7 +5,7 @@ import LoadingSpinner from '../UI/LoadingSpinner';
 import classes from './QuoteForm.module.css';
 import { isNotNull, useValidate, ErrorMsg } from '../../ulties/validate';
 import { BASE_URL } from '../../ulties/http';
-import { json, redirect, useNavigation } from 'react-router-dom';
+import { json, redirect, useNavigate, useNavigation } from 'react-router-dom';
 
 const QuoteForm = (props) => {
   const [isSubmitted, setIsSubmitted] = useState(false)
@@ -15,9 +15,10 @@ const QuoteForm = (props) => {
   const invalidAuthorMsg = useValidate('Author', authorInput, [isNotNull])
   const invalidTextMsg = useValidate('Text', textInput, [isNotNull])
 
+  const navigate = useNavigate()
   const isSubmitting = useNavigation().state === 'submitting'
 
-  function submitFormHandler(event) {
+  async function submitFormHandler(event) {
     event.preventDefault();
     setIsSubmitted(true)
 
@@ -27,7 +28,8 @@ const QuoteForm = (props) => {
       const data = Object.fromEntries(formData.entries())
 
       try {
-        action(data, 'post')
+        await action(data, 'post')
+        navigate('/quotes')
       }
       catch (err) {
         console.error(err)
@@ -81,6 +83,4 @@ export async function action(dataObj, httpMethod) {
   if (!response.ok) {
     throw json({ message: 'could not post quote!' }, { status: 500 })
   }
-  console.log('hear');
-  return redirect('/')
 }

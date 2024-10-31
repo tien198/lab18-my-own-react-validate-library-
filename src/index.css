@@ -16,6 +16,10 @@ body {
   align-items: center;
 }
 
+.center {
+  margin: 3rem 1rem;
+}
+
 .focused {
   font-size: 3rem;
   font-weight: bold;
@@ -53,4 +57,17 @@ body {
 .btn--flat:active {
   background-color: teal;
   color: white;
+}
+
+
+@media (min-width:768px) {
+  .center {
+    margin: 3rem 3rem;
+  }
+}
+
+@media (min-width:1080px) {
+  .center {
+    margin: 3rem 9rem;
+  }
 }

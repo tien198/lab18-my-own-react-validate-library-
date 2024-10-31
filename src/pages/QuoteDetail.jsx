@@ -1,14 +1,24 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { json, useLoaderData, useParams } from 'react-router-dom';
+import HighlightedQuote from '../components/quotes/HighlightedQuote';
+import { BASE_URL } from '../ulties/http';
 
 function QuoteDetail(props) {
-    const { quoteId } = useParams()
-    return (
-        <>
-            <h1>Quote Detail page</h1>
-            <p>quote-id: {quoteId}</p>
-        </>
-    );
+    const resData = useLoaderData()
+
+    const data = Object.values(resData)
+    const { author, text } = data[0]
+
+    return <HighlightedQuote author={author} text={text} />
 }
 
 export default QuoteDetail;
+
+
+export async function loader({ params }) {
+    const { quoteId } = params
+    const response = await fetch(BASE_URL)
+    if (!response.ok)
+        throw json({ message: `Could not load quote has id: ${quoteId}` })
+    return response
+}

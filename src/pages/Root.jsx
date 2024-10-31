@@ -2,13 +2,15 @@ import React from 'react';
 import MainNavigation from "../components/layout/MainNavigation";
 import { Outlet } from 'react-router-dom';
 
-function QuoteRoot(props) {
+function Root(props) {
     return (
         <>
             <MainNavigation />
-            <Outlet />
+            <div className="center">
+                <Outlet />
+            </div>
         </>
     );
 }
 
-export default QuoteRoot;
+export default Root;
